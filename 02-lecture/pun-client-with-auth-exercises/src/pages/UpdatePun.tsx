@@ -3,6 +3,7 @@ import { IPun, PunUpdate } from "../types/Pun"
 import { Link, useNavigate, useParams } from "react-router"
 import axios from "axios"
 import { formatDate } from "../utils/dateUtils"
+import { API_URL } from "../services/baseService"
 
 export const UpdatePun = () => {
   // Exercise 1: Create a state variable to store the pun
@@ -16,7 +17,7 @@ export const UpdatePun = () => {
 
     const fetchPun = async () => {
       try {
-        const response = await axios.get<IPun>('https://pun-api.vercel.app/puns/' + params.id)
+        const response = await axios.get<IPun>(`${API_URL}/${params.id}`)
         console.log(response.data);
         setPun(response.data);
       } catch (error) {
