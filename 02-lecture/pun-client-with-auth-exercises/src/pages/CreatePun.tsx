@@ -1,22 +1,22 @@
 import { FormEvent, useState } from "react"
-import { Link, useNavigate } from "react-router"
-import { createPun } from "../services/punService"
+import { Link } from "react-router"
+import { usePuns } from "../hooks/usePuns";
 
 export const CreatePun = () => {
+  const {loading, error, createPunHandler} = usePuns();
   const [content, setContent] = useState<string>("")
-  const navigate = useNavigate()
 
-  const createPunHandler = async (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
-    await createPun({content: content});
-    navigate('/')
+    await createPunHandler({content: content})
   }
 
   return (
     <div>
       <h2>Create Pun</h2>
-
-      <form onSubmit={createPunHandler}>
+      { error && <p>{error}</p> }
+      
+      <form onSubmit={handleSubmit}>
         <textarea 
           name="" 
           id="" 
@@ -26,7 +26,7 @@ export const CreatePun = () => {
           onChange={(e) => setContent(e.currentTarget.value)}
         />
 
-        <button>Create</button>
+        <button>{ loading ? "Loading..." : "Create"}</button>
 
         <Link to={"/"}>&#x2190; back</Link>
       </form>

@@ -1,27 +1,18 @@
-import { useEffect, useState } from "react"
-import { IPun } from "../types/Pun"
 import { formatDate } from "../utils/dateUtils"
 import { Link } from "react-router"
-
-import { deletePun, fetchAllPuns } from "../services/punService"
+import { usePuns } from "../hooks/usePuns"
 
 export const ManagePuns = () => {
-  const [puns, setPuns] = useState<IPun[]>([])
-
-  useEffect(() => {
-    fetchAllPuns().then((data) => setPuns(data))
-  }, [])
- 
-  const deletePunHandler = async (id: string) => {
-    await deletePun(id)
-    setPuns(puns.filter((pun) => pun._id !== id))
-  }
+  const {puns, loading, error, deletePunHandler} = usePuns();
+  console.log('ManagePuns')
   
   return (
     <div>
-      <h2>Manage Puns</h2>
+      <h2>Manage Puns</h2>  
+      { error && <p>{error}</p> }
 
       <section id="pun-list">
+        { loading && <p>Loading...</p> }
         {
           puns.map((pun) => (
             <article className="list-group-item" key={pun._id}>
