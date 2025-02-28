@@ -10,7 +10,7 @@ export const fetchPun = async (id: string) => {
 }
 export const createPun = async (payload: PunCreate) => {
   console.log("punsService -> createPun")
-  return handleRequest<IPun>(api.post(PUN_ENDPOINT + "dasd", payload));
+  return handleRequest<IPun>(api.post(PUN_ENDPOINT, payload));
 }
 export const updatePun = async (id: string, payload: PunUpdate) => {
   return handleRequest<IPun>(api.patch(`${PUN_ENDPOINT}/${id}`, payload));

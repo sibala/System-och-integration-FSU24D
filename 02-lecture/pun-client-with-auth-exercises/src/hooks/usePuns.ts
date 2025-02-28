@@ -18,9 +18,7 @@ export const usePuns = () => {
     setLoading(true)
     
     fetchAllPuns()
-      .then((data) => {
-        setPuns(data)
-      })
+      .then((data) => setPuns(data))
       .finally(() => setLoading(false))
   }, [])
 
@@ -38,7 +36,7 @@ export const usePuns = () => {
   }
 
   const updatePunHandler = () => {}
-  
+
   const deletePunHandler = async (id: string) => {
     console.log('usePuns -> deletePunHandler')
     setLoading(true)
