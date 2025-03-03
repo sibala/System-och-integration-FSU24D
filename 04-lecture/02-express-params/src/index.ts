@@ -57,6 +57,48 @@ app.get('/todos/:id', (req: Request, res: Response) => {
   }
 })
 
+// Solution to Exercise 02-express-params
+const posts: Post[] = [
+  new Post('Title 1', 'Content...', 'John'),
+  new Post('Title 2', 'Content...', 'John'),
+  new Post('Title 3', 'Content...', 'Jane'),
+]
+app.get('/posts', (req: Request, res: Response) => {
+  type ParamsType = {filter?: string}
+  console.log(req.query)
+  const {filter}: ParamsType = req.query;
+  let filterCaseInsesitive = filter !== undefined ?  filter.toLowerCase() : ""
+
+  try {
+    if (filter) {
+      const filteredPosts = posts.filter((post) => post.author.toLowerCase().includes(filterCaseInsesitive))
+      res.json({filteredPosts});
+      return;
+    }
+    
+    res.json({posts});
+  } catch (error) {
+    res.status(500).json({error: error.message})
+  }
+})
+
+
+// Example on path params
+app.get('/posts/:id', (req: Request, res: Response) => {
+  const {id} = req.params
+
+  try {
+    const post = posts.find((post) => post.id == parseInt(id))
+    if (!post) {
+      res.status(404).json({message: 'Post not found'})
+      return
+    }
+  
+    res.json({post});
+  } catch (error) {
+    res.status(500).json({error: error.message})
+  }
+})
 
 
 // Start Express server
