@@ -1,5 +1,6 @@
 import express, { Response } from "express"
 import { Todo } from "./models/Todo";
+import { Post } from "./models/Post";
 const app = express() //  Create a new Express app instance
 
 
@@ -18,10 +19,19 @@ const todos: Todo[] = [
   new Todo('Laga mat'),
   new Todo('Koda')
 ]
-
-app.get('/todos', (req, res) => {
+app.get('/todos', (_, res: Response) => {
   res.json({todos});
 })
+
+// Solution to Exercise 01-express-intro
+const posts: Post[] = [
+  new Post('En titel', 'Innehåll', 'Författaren')
+]
+
+app.get('/posts', (_, res: Response) => {
+  res.json({posts});
+})
+
 
 // Start Express server
 const PORT = 3000;
