@@ -67,10 +67,10 @@ app.get('/posts', (req: Request, res: Response) => {
   type ParamsType = {filter?: string}
   console.log(req.query)
   const {filter}: ParamsType = req.query;
-  let filterCaseInsesitive = filter !== undefined ?  filter.toLowerCase() : ""
-
+  
   try {
     if (filter) {
+      let filterCaseInsesitive = filter !== undefined ?  filter.toLowerCase() : ""
       const filteredPosts = posts.filter((post) => post.author.toLowerCase().includes(filterCaseInsesitive))
       res.json({filteredPosts});
       return;
