@@ -1,3 +1,3 @@
 # Exercises
 
-## Will be displayed after push the first lesson.
+## Will be displayed when pushing the first lesson
