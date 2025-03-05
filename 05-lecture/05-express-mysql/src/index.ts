@@ -12,7 +12,7 @@ import { ITodo } from "./models/ITodo";
 
 
 // DB Connection
-import mysql, { FieldPacket, QueryResult, ResultSetHeader, RowDataPacket } from 'mysql2/promise'
+import mysql, { ResultSetHeader } from 'mysql2/promise'
 const db = mysql.createPool({
   host:     process.env.DB_HOST,
   user:     process.env.DB_USER,
@@ -89,7 +89,7 @@ app.post('/todos', async (req: Request, res: Response) => {
       INSERT INTO todos (content)
       VALUES (?)
     `
-    await db.query(sql, [content])
+    await db.query<ResultSetHeader>(sql, [content])
     res.status(201).json({message: 'Todo created'})
   } catch(error: unknown) {
     res.status(500).json({error: logError(error)})
