@@ -19,3 +19,9 @@
 - Build on the previous code, rewrite all endpoints using database queries to perform CRUD, instead of using the local array 
 
 
+
+## Exercise 06-express-mysql-refactored
+- Move the code for DB connection to config/db.ts
+- Build on the previous code, refactor all endpoints to routes and controllers
+- Helper functions such as logError may be moved to utils/logUtils.ts
+
