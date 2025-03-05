@@ -1,13 +1,18 @@
+// Import enironmental variables
 import dotenv from 'dotenv'
 dotenv.config()
 console.log(process.env.DB_PASSWORD)
-import express, { Request, Response } from "express"
-import { Todo } from "./models/Todo";
 
+// Import and use express
+import express, { Request, Response } from "express"
 const app = express() //  Create a new Express app instance
 
+
+import { ITodo } from "./models/ITodo";
+
+
 // DB Connection
-import mysql from 'mysql2/promise'
+import mysql, { FieldPacket, QueryResult, ResultSetHeader, RowDataPacket } from 'mysql2/promise'
 const db = mysql.createPool({
   host:     process.env.DB_HOST,
   user:     process.env.DB_USER,
@@ -25,25 +30,22 @@ const connectDB = async () => {
   }
 } 
 
+// Helper function. Error handling
+const logError = (error: unknown) => {
+  return error instanceof Error 
+    ? error.message 
+    : "Unknown error"
+}
+
 
 // Middleware
 // Makes sure that all Requests body gets parsed to JSON
 app.use(express.json());
 
-// define the root path with a message
-// req, handles the incoming request from the client
-// res, handles the outgoing response to the client
-// May use _ to indicate that the parameter is not used
 app.get('/', (_, res: Response) => {
   res.json({message: 'Welcome to the Express + TS server'});
 })
 
-
-const todos: Todo[] = [
-  new Todo('Handla mat'),
-  new Todo('Laga mat'),
-  new Todo('Koda')
-]
 
 // Example on query string params
 app.get('/todos', async (req: Request, res: Response) => {
@@ -53,13 +55,12 @@ app.get('/todos', async (req: Request, res: Response) => {
 
   try {
     const sql = "SELECT * FROM todos"
-    const [rows] = await db.query(sql)
+    const [rows] = await db.query<ITodo[]>(sql)
     res.json(rows);
   } catch (error) {
-    res.status(500).json({error: error.message})
+    res.status(500).json({error: logError(error)})
   }
 })
-
 
 // Example on path params
 app.get('/todos/:id', async (req: Request, res: Response) => {
@@ -67,75 +68,81 @@ app.get('/todos/:id', async (req: Request, res: Response) => {
 
   try {
     const sql = `SELECT * FROM todos WHERE id = ?`
-    const [rows] = await db.query(sql, [id])
+    const [rows] = await db.query<ITodo[]>(sql, [id])
     res.json(rows);
   } catch (error) {
-    res.status(500).json({error: error.message})
+    res.status(500).json({error: logError(error)})
   }
 })
 
 
-// Create todos
-app.post('/todos', (req: Request, res: Response) => {
+// Create todo
+app.post('/todos', async (req: Request, res: Response) => {
   const {content} = req.body;
-  if (!content) {
-    res.status(400).json({error: "Content is required"})
-    return
+  if (content === undefined) {
+    res.status(400).json({message: 'Required fields missing', required_fields: ['content']})
+    return;
   }
 
   try {
-    const newTodo = new Todo(content)
-    todos.push(newTodo)
-    res.status(201).json({message: 'Todo created', todo: newTodo});
-  } catch (error: any) {
-    const message = error instanceof Error ? error.message : "Unknown error";
-    res.status(500).json({error: message})
+    const sql = `
+      INSERT INTO todos (content)
+      VALUES (?)
+    `
+    await db.query(sql, [content])
+    res.status(201).json({message: 'Todo created'})
+  } catch(error: unknown) {
+    res.status(500).json({error: logError(error)})
   }
 })
 
 
 // Update todos
-app.patch('/todos/:id', (req: Request, res: Response) => {
-  const {content, done} = req.body;
-
+app.patch('/todos/:id', async (req: Request, res: Response) => {
   const {id} = req.params;
-  const todo = todos.find((todo) => todo.id === parseInt(id))
-  if (!todo) {
-    res.status(404).json({error: "Todo not found"})
-    return
+  const {content, done} = req.body;
+  if (content === undefined || done === undefined) {
+    res.status(400).json({message: 'Required fields missing', required_fields: ['content', 'done']})
+    return;
   }
 
   try {
-    todo.content = content !== undefined ? content : todo.content;
-    todo.done = done !== undefined ? done : todo.done;
-    res.status(200).json({message: 'Todo updated', todo: todo});
-  } catch (error: any) {
-    const message = error instanceof Error ? error.message : "Unknown error";
-    res.status(500).json({error: message})
+    const sql = `
+      UPDATE todos
+      SET content = ?, done = ?
+      WHERE id = ?
+    `
+    const [result] = await db.query<ResultSetHeader>(sql, [content, done, id])
+    if (result.affectedRows === 0) {
+      res.status(404).json({message: 'Todo not found'})
+      return
+    }
+    res.json({message: 'Todo updated'});
+  } catch(error) {
+    res.status(500).json({error: logError(error)})
   }
 })
-
 
 
 // Delete todos
-app.delete('/todos/:id', (req: Request, res: Response) => {
+app.delete('/todos/:id', async (req: Request, res: Response) => {
   const {id} = req.params;
 
   try {
-    const todoIndex = todos.findIndex((todo) => todo.id === parseInt(id))
-    if (todoIndex == -1) {
-      res.status(404).json({error: "Todo not found"})
+    const sql = `
+      DELETE FROM todos
+      WHERE id = ?
+    `
+    const [result] = await db.query<ResultSetHeader>(sql, [id]);
+    if (result.affectedRows === 0) {
+      res.status(404).json({message: 'Todo not found'})
       return
     }
-
-    todos.splice(todoIndex, 1);
-    res.status(200).json({message: 'Todo deleted'});
-  } catch (error: any) {
-    const message = error instanceof Error ? error.message : "Unknown error";
-    res.status(500).json({error: message})
+    res.json({message: 'Todo deleted'});
+  } catch (error) {
+    res.status(500).json({error: logError(error)})
   }
 })
-
 
 
 // Connect to DB
@@ -146,10 +153,20 @@ app.listen(PORT, () => {
   console.log(`The server is running at http://localhost:${PORT}`);
 })
 
+// Exercise 05-express-mysql
+// Rewrite 04-lecture/04-express-crud, using mysql instead of working with a local array
 
-
-// Exercise 04-express-crud
-// Build on the previous code, create new endpoints for POST/PATCH/DELETE posts 
-// The POST endpoint should create a new post with the following properties: id, title, content, author
-// The PATCH endpoint should update an existing post with the “:id” path param. Should be able to update the title, content and author
-// The DELETE endpoint should delete an existing post with the “:id” path param
+//     Begin with installing the packages mysql2 and dotenv: npm install mysql2 dotenv
+//     In PHPMyAdmin -> Create a DB with a posts-table, with the following fields:
+//         id INT(10) PK
+//         title VARCHAR(100)
+//         content TEXT
+//         author VARCHAR(100)
+//     Establish a DB-connection in index.ts. For XAMPP, the login info is:
+//         host: "localhost"
+//         user: "root"
+//         password: "" // Empty string
+//         database: ??? // Whatever you named the databse when creating it
+//         port: 3306
+//     Make sure the above credentials are saved in a .env file, and used by importing the dotenv package
+//     Build on the previous code, rewrite all endpoints using database queries to perform CRUD, instead of using the local array
