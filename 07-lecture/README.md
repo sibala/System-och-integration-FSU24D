@@ -5,7 +5,7 @@ You have the choice to work individually or be part of a group.<br>
 PM me if you want to work in a group :)
 
 <br>
-In the assignment you will build an ecommerce-client by consuming an API found in <b>06-lecture/ecommerce-api<b>. <br>
+In the assignment you will build an ecommerce-client by consuming an API found in <b><u>06-lecture/ecommerce-api</u></b>. <br>
 The following pars need to be in place:
 
 ### Obligatory parts
