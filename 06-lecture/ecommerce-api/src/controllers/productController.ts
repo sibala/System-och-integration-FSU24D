@@ -35,7 +35,7 @@ export const createProduct = async (req: Request, res: Response) => {
   try {
     const sql = `
       INSERT INTO products (name, description, price, stock, category, image) 
-      VALUES (?, ?, ?, ?, ?, image)
+      VALUES (?, ?, ?, ?, ?, ?)
     `;
     const params = [name, description, price, stock, category, image]
     await db.query<ResultSetHeader>(sql, params)
