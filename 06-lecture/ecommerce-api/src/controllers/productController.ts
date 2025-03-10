@@ -48,7 +48,6 @@ export const createProduct = async (req: Request, res: Response) => {
 export const updateProduct = async (req: Request, res: Response) => { 
   const id = req.params.id;
   const { name, description, price, stock, category, image }: IProduct = req.body;
-  
 
   try {
     const sql = `
