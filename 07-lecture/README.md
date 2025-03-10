@@ -6,7 +6,8 @@ PM me if you want to work in a group :)
 
 <br>
 <br>
-In the assignment you will build the following parts of an ecommerce:
+In the assignment you will build an ecommerce-client by consuming an API found in 06-lecture/ecommerce-api. <br>
+The following pars need to be in place:
 
 ### Obligatory parts
 Admin:
