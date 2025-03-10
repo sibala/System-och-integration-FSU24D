@@ -86,7 +86,7 @@ CREATE TABLE `products` (
   `price` int(5) NOT NULL,
   `stock` int(4) NOT NULL,
   `category` varchar(100) NOT NULL,
-  `image` varchar(200) NOT NULL DEFAULT '',
+  `image` varchar(200) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 

@@ -140,15 +140,15 @@ const createOrderItem = async (data: IOrderItem) => {
 
 export const updateOrder = async (req: Request, res: Response) => {
   const id: string = req.params.id;
-  const { customer_id, total_price, payment_status, payment_id, order_status }: IOrder = req.body;
+  const { payment_status, payment_id, order_status }: IOrder = req.body;
   
   try {
     const sql = `
       UPDATE orders 
-      SET customer_id = ?, total_price = ?, payment_status = ?, payment_id = ?,order_status = ?
+      SET payment_status = ?, payment_id = ?,order_status = ?
       WHERE id = ?
     `;
-    const params = [customer_id, total_price, payment_status, payment_id, order_status, id];
+    const params = [payment_status, payment_id, order_status, id];
     const [result] = await db.query<ResultSetHeader>(sql, params)
 
     result.affectedRows === 0
