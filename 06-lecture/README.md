@@ -11,11 +11,13 @@ In the recorded lesson we go through:
 ## API Docs 
 
 <b>PRODUCTS</b>
+---
   - [GET]    http://localhost:3000/products
+`Response JSON Body:` None
 
 `Response JSON Body:`
 ``` 
-{
+[
   {
     "id": 9,
     "name": "Product name",
@@ -31,9 +33,73 @@ In the recorded lesson we go through:
 
 
   - [GET]    http://localhost:3000/products/:id
+
+`Response JSON Body:` None
+
+`Response JSON Body:`
+``` 
+{
+  "id": 9,
+  "name": "Product name",
+  "description": "Desc...",
+  "price": 423,
+  "stock": 234,
+  "category": "Graduation Cake",
+  "image": "image url",
+  "created_at": "2025-03-11T13:59:05.000Z"
+}
+``` 
   - [POST]   http://localhost:3000/products
+
+`Request JSON Body:`
+``` 
+{
+  "name": "Product name",
+  "description": "Desc...",
+  "price": 423,
+  "stock": 234,
+  "category": "Graduation Cake",
+  "image": "image url",
+}
+``` 
+
+
+`Response JSON Body:`
+``` 
+{
+  message: "Product created"
+}
+``` 
   - [PATCH]  http://localhost:3000/products/:id
+
+`Request JSON Body:`
+``` 
+{
+  "name": "Product name",
+  "description": "Desc...",
+  "price": 423,
+  "stock": 234,
+  "category": "Graduation Cake",
+  "image": "image url",
+}
+``` 
+
+`Response JSON Body:`
+``` 
+{
+  message: "Product updated"
+}
+``` 
   - [DELETE] http://localhost:3000/products/:id
+
+`Response JSON Body:` None
+
+`Response JSON Body:`
+``` 
+{
+  message: "Product deleted"
+}
+``` 
 
 <b>CUSTOMERS</b>
   - [GET]    http://localhost:3000/customers
