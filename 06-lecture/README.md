@@ -35,7 +35,7 @@ In the recorded lesson we go through:
 
 
   - [GET]    http://localhost:3000/products/:id
-
+---
 `Request JSON Body:` None
 
 `Response JSON Body:`
@@ -52,7 +52,7 @@ In the recorded lesson we go through:
 }
 ``` 
   - [POST]   http://localhost:3000/products
-
+---
 `Request JSON Body:`
 ``` 
 {
@@ -73,7 +73,7 @@ In the recorded lesson we go through:
 }
 ``` 
   - [PATCH]  http://localhost:3000/products/:id
-
+---
 `Request JSON Body:`
 ``` 
 {
@@ -93,7 +93,7 @@ In the recorded lesson we go through:
 }
 ``` 
   - [DELETE] http://localhost:3000/products/:id
-
+---
 `Request JSON Body:` None
 
 `Response JSON Body:`
