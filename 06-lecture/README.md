@@ -7,8 +7,21 @@ In the recorded lesson we go through:
 - The Ecommerce API code.
 - Testing the following endpoints of the API, in Insomnia:
 
+
+## API Docs 
+
 PRODUCTS
   - [GET]    http://localhost:3000/products
+   - RESPONSE BODY:
+   - ```
+{
+  "firstName": "John",
+  "lastName": "Smith",
+  "age": 25
+}
+``` 
+
+
   - [GET]    http://localhost:3000/products/:id
   - [POST]   http://localhost:3000/products
   - [PATCH]  http://localhost:3000/products/:id
