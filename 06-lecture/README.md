@@ -9,6 +9,10 @@ In the recorded lesson we go through:
 
 
 ## API Docs 
+- [PRODUCTS endpoints](https://github.com/sibala/System-och-integration-FSU24D/tree/main/06-lecture#products-endpoints)
+- [CUSTOMERS endpoints](https://github.com/sibala/System-och-integration-FSU24D/tree/main/06-lecture#customers-endpoints)
+- [ORDERS endpoints](https://github.com/sibala/System-och-integration-FSU24D/tree/main/06-lecture#orders-endpoints)
+- [ORDER ITEMS endpoints](https://github.com/sibala/System-och-integration-FSU24D/tree/main/06-lecture#products-endpoints)
 
 ### PRODUCTS endpoints
 
@@ -203,14 +207,14 @@ In the recorded lesson we go through:
 ``` 
 
 
-<b>ORDERS</b>
+### ORDERS endpoints
   - [GET]    http://localhost:3000/orders
   - [GET]    http://localhost:3000/orders/:id
   - [POST]   http://localhost:3000/orders
   - [PATCH]  http://localhost:3000/orders/:id
   - [DELETE] http://localhost:3000/orders/:id
 
-<b>ORDER_ITEMS</b>
+### ORDER_ITEMS endpoints
   - [PATCH]  http://localhost:3000/order-items/:id
   - [DELETE] http://localhost:3000/order-items/:id
 
