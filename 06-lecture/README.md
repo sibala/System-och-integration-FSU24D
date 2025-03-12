@@ -16,16 +16,16 @@ In the recorded lesson we go through:
 
 ``` 
 {
-{
-"id": 9,
-"name": "Product name",
-"description": "Desc...",
-"price": 423,
-"stock": 234,
-"category": "Graduation Cake",
-"image": "image url",
-"created_at": "2025-03-11T13:59:05.000Z"
-}
+  {
+    "id": 9,
+    "name": "Product name",
+    "description": "Desc...",
+    "price": 423,
+    "stock": 234,
+    "category": "Graduation Cake",
+    "image": "image url",
+    "created_at": "2025-03-11T13:59:05.000Z"
+  }
 ]
 ``` 
 
