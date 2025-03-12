@@ -13,7 +13,7 @@ In the recorded lesson we go through:
 <b>PRODUCTS</b>
   - [GET]    http://localhost:3000/products
    - RESPONSE BODY:
-   - ``` {
+``` {
   "firstName": "John",
   "lastName": "Smith",
   "age": 25
