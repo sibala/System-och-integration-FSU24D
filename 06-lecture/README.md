@@ -106,12 +106,102 @@ In the recorded lesson we go through:
 }
 ``` 
 
-<b>CUSTOMERS</b>
-  - [GET]    http://localhost:3000/customers
+### CUSTOMERS endpoints
+
+- [GET]    http://localhost:3000/customers
+---
+
+>Request JSON Body:
+`None`
+
+>Response JSON Body:
+``` 
+[
+  {
+    "id": 9,
+    "name": "customer name",
+    "description": "Desc...",
+    "price": 423,
+    "stock": 234,
+    "category": "Graduation Cake",
+    "image": "image url",
+    "created_at": "2025-03-11T13:59:05.000Z"
+  }
+]
+``` 
+
+
   - [GET]    http://localhost:3000/customers/:id
+---
+>Request JSON Body: 
+`None`
+
+>Response JSON Body:
+``` 
+{
+  "id": 9,
+  "name": "customer name",
+  "description": "Desc...",
+  "price": 423,
+  "stock": 234,
+  "category": "Graduation Cake",
+  "image": "image url",
+  "created_at": "2025-03-11T13:59:05.000Z"
+}
+``` 
   - [POST]   http://localhost:3000/customers
+---
+>Request JSON Body:
+``` 
+{
+  "name": "customer name",
+  "description": "Desc...",
+  "price": 423,
+  "stock": 234,
+  "category": "Graduation Cake",
+  "image": "image url",
+}
+``` 
+
+
+>Response JSON Body:
+``` 
+{
+  message: "Customer created"
+}
+``` 
   - [PATCH]  http://localhost:3000/customers/:id
+---
+>Request JSON Body:
+``` 
+{
+  "name": "customer name",
+  "description": "Desc...",
+  "price": 423,
+  "stock": 234,
+  "category": "Graduation Cake",
+  "image": "image url",
+}
+``` 
+
+>Response JSON Body:
+``` 
+{
+  message: "Customer updated"
+}
+``` 
   - [DELETE] http://localhost:3000/customers/:id
+---
+>Request JSON Body:
+`None`
+
+>Response JSON Body:
+``` 
+{
+  message: "Customer deleted"
+}
+``` 
+
 
 <b>ORDERS</b>
   - [GET]    http://localhost:3000/orders
