@@ -10,7 +10,7 @@ In the recorded lesson we go through:
 
 ## API Docs 
 
-<b>PRODUCTS</b>
+### PRODUCTS endpoints
 
   - [GET]    http://localhost:3000/products
 ---
