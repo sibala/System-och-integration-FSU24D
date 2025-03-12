@@ -12,7 +12,7 @@ In the recorded lesson we go through:
 - [PRODUCTS endpoints](https://github.com/sibala/System-och-integration-FSU24D/tree/main/06-lecture#products-endpoints)
 - [CUSTOMERS endpoints](https://github.com/sibala/System-och-integration-FSU24D/tree/main/06-lecture#customers-endpoints)
 - [ORDERS endpoints](https://github.com/sibala/System-och-integration-FSU24D/tree/main/06-lecture#orders-endpoints)
-- [ORDER ITEMS endpoints](https://github.com/sibala/System-och-integration-FSU24D/tree/main/06-lecture#products-endpoints)
+- [ORDER ITEMS endpoints](https://github.com/sibala/System-och-integration-FSU24D/tree/main/06-lecture#order_items-endpoints)
 
 ### PRODUCTS endpoints
 
@@ -122,14 +122,17 @@ In the recorded lesson we go through:
 ``` 
 [
   {
-    "id": 9,
-    "name": "customer name",
-    "description": "Desc...",
-    "price": 423,
-    "stock": 234,
-    "category": "Graduation Cake",
-    "image": "image url",
-    "created_at": "2025-03-11T13:59:05.000Z"
+    "id": 1,
+    "firstname": "John",
+    "lastname": "Doe",
+    "email": "john.doe@gmail.com",
+    "password": "234",
+    "phone": "53451234",
+    "street_address": "Street 123",
+    "postal_code": "Postal code",
+    "city": "City",
+    "country": "Country",
+    "created_at": "2025-03-07T07:25:02.000Z"
   }
 ]
 ``` 
@@ -143,14 +146,17 @@ In the recorded lesson we go through:
 >Response JSON Body:
 ``` 
 {
-  "id": 9,
-  "name": "customer name",
-  "description": "Desc...",
-  "price": 423,
-  "stock": 234,
-  "category": "Graduation Cake",
-  "image": "image url",
-  "created_at": "2025-03-11T13:59:05.000Z"
+  "id": 1,
+  "firstname": "John",
+  "lastname": "Doe",
+  "email": "john.doe@gmail.com",
+  "password": "234",
+  "phone": "53451234",
+  "street_address": "Street 123",
+  "postal_code": "Postal code",
+  "city": "City",
+  "country": "Country",
+  "created_at": "2025-03-07T07:25:02.000Z"
 }
 ``` 
   - [POST]   http://localhost:3000/customers
@@ -158,12 +164,15 @@ In the recorded lesson we go through:
 >Request JSON Body:
 ``` 
 {
-  "name": "customer name",
-  "description": "Desc...",
-  "price": 423,
-  "stock": 234,
-  "category": "Graduation Cake",
-  "image": "image url",
+  "firstname": "John",
+  "lastname": "Doe",
+  "email": "john.doe@gmail.com",
+  "password": "234",
+  "phone": "53451234",
+  "street_address": "Street 123",
+  "postal_code": "Postal code",
+  "city": "City",
+  "country": "Country",
 }
 ``` 
 
@@ -179,12 +188,15 @@ In the recorded lesson we go through:
 >Request JSON Body:
 ``` 
 {
-  "name": "customer name",
-  "description": "Desc...",
-  "price": 423,
-  "stock": 234,
-  "category": "Graduation Cake",
-  "image": "image url",
+  "firstname": "John",
+  "lastname": "Doe",
+  "email": "john.doe@gmail.com",
+  "password": "234",
+  "phone": "53451234",
+  "street_address": "Street 123",
+  "postal_code": "Postal code",
+  "city": "City",
+  "country": "Country",
 }
 ``` 
 
