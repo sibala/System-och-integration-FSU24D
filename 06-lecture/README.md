@@ -12,12 +12,22 @@ In the recorded lesson we go through:
 
 <b>PRODUCTS</b>
   - [GET]    http://localhost:3000/products
-    - RESPONSE BODY:
-``` {
-  "firstName": "John",
-  "lastName": "Smith",
-  "age": 25
-}
+> Response JSON Body: 
+`Response JSON Body:`
+
+``` 
+{
+  {
+		"id": 9,
+		"name": "Product name",
+		"description": "Desc...",
+		"price": 423,
+		"stock": 234,
+		"category": "Graduation Cake",
+		"image": "image url",
+		"created_at": "2025-03-11T13:59:05.000Z"
+	}
+]
 ``` 
 
 
