@@ -219,14 +219,14 @@ In the recorded lesson we go through:
 ``` 
 
 
-### ORDERS endpoints
+### ORDERS endpoints - Docs comming soon
   - [GET]    http://localhost:3000/orders
   - [GET]    http://localhost:3000/orders/:id
   - [POST]   http://localhost:3000/orders
   - [PATCH]  http://localhost:3000/orders/:id
   - [DELETE] http://localhost:3000/orders/:id
 
-### ORDER_ITEMS endpoints
+### ORDER_ITEMS endpoints - Docs comming soon
   - [PATCH]  http://localhost:3000/order-items/:id
   - [DELETE] http://localhost:3000/order-items/:id
 
