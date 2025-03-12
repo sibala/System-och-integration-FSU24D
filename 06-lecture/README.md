@@ -10,11 +10,10 @@ In the recorded lesson we go through:
 
 ## API Docs 
 
-PRODUCTS
+<b>PRODUCTS</b>
   - [GET]    http://localhost:3000/products
    - RESPONSE BODY:
-   - ```
-{
+   - ``` {
   "firstName": "John",
   "lastName": "Smith",
   "age": 25
@@ -27,21 +26,21 @@ PRODUCTS
   - [PATCH]  http://localhost:3000/products/:id
   - [DELETE] http://localhost:3000/products/:id
 
-CUSTOMERS
+<b>CUSTOMERS</b>
   - [GET]    http://localhost:3000/customers
   - [GET]    http://localhost:3000/customers/:id
   - [POST]   http://localhost:3000/customers
   - [PATCH]  http://localhost:3000/customers/:id
   - [DELETE] http://localhost:3000/customers/:id
 
-ORDERS
+<b>ORDERS</b>
   - [GET]    http://localhost:3000/orders
   - [GET]    http://localhost:3000/orders/:id
   - [POST]   http://localhost:3000/orders
   - [PATCH]  http://localhost:3000/orders/:id
   - [DELETE] http://localhost:3000/orders/:id
 
-ORDER_ITEMS
+<b>ORDER_ITEMS</b>
   - [PATCH]  http://localhost:3000/order-items/:id
   - [DELETE] http://localhost:3000/order-items/:id
 
