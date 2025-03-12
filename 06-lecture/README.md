@@ -36,9 +36,9 @@ In the recorded lesson we go through:
 
   - [GET]    http://localhost:3000/products/:id
 ---
-`Request JSON Body:` None
+>Request JSON Body: None
 
-`Response JSON Body:`
+>Response JSON Body:
 ``` 
 {
   "id": 9,
