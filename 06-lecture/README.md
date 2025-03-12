@@ -76,6 +76,7 @@ In the recorded lesson we go through:
 ``` 
 {
   message: "Product created"
+  id: 2
 }
 ``` 
   - [PATCH]  http://localhost:3000/products/:id
@@ -181,6 +182,7 @@ In the recorded lesson we go through:
 ``` 
 {
   message: "Customer created"
+  id: 3
 }
 ``` 
   - [PATCH]  http://localhost:3000/customers/:id
@@ -219,14 +221,168 @@ In the recorded lesson we go through:
 ``` 
 
 
-### ORDERS endpoints - Docs comming soon
+### ORDERS endpoints
   - [GET]    http://localhost:3000/orders
+---
+
+>Request JSON Body:
+`None`
+
+>Response JSON Body:
+``` 
+[
+  {
+    "id": 21,
+    "customer_id": 1,
+    "total_price": 1000,
+    "payment_status": "paid",
+    "payment_id": null,
+    "order_status": "Processing",
+    "created_at": "2025-03-10T08:52:55.000Z",
+    "customer_firstname": "John",
+    "customer_lastname": "Doe",
+    "customer_email": "john.doe@gmail.com",
+    "customer_phone": "5345",
+    "customer_street_address": "Street 123",
+    "customer_postal_code": "Postal code",
+    "customer_city": "City",
+    "customer_country": "Country",
+    "customers_created_at": "2025-03-07T07:25:02.000Z"
+  }
+]
+``` 
+
+
   - [GET]    http://localhost:3000/orders/:id
+---
+
+>Request JSON Body:
+`None`
+
+>Response JSON Body:
+``` 
+{
+  "id": "25",
+  "customer_id": 1,
+  "total_price": 669,
+  "payment_status": "unpaid",
+  "payment_id": null,
+  "order_status": "pending",
+  "created_at": "2025-03-12T18:25:32.000Z",
+  "customer_firstname": "John",
+  "customer_lastname": "Doe",
+  "customer_email": "john.doe@gmail.com",
+  "customer_password": "234",
+  "customer_phone": "5345",
+  "customer_street_address": "Street 123",
+  "customer_postal_code": "Postal code",
+  "customer_city": "City",
+  "customer_country": "Country",
+  "order_items": [
+    {
+      "id": 51,
+      "product_id": 11,
+      "product_name": "Test product - changed",
+      "quantity": 3,
+      "unit_price": 100
+    },
+    {
+      "id": 52,
+      "product_id": 10,
+      "product_name": "qwe",
+      "quantity": 3,
+      "unit_price": 123
+    }
+  ]
+}
+``` 
   - [POST]   http://localhost:3000/orders
+---
+>Request JSON Body:
+``` 
+{
+  "customer_id": 1,
+  "payment_status": "unpaid",
+  "payment_id": null,
+  "order_status": "pending",
+  "order_items": [
+    {
+      "product_id": 11,
+      "product_name": "Test product - changed",
+      "quantity": 3,
+      "unit_price": 100
+    },
+    {
+      "product_id": 10,
+      "product_name": "qwe",
+      "quantity": 3,
+      "unit_price": 123
+    }
+  ]
+}
+``` 
+
+
+>Response JSON Body:
+``` 
+{
+  message: "Order created"
+  id: 5
+}
+``` 
   - [PATCH]  http://localhost:3000/orders/:id
+---
+>Request JSON Body:
+``` 
+{
+  "payment_status": "paid",
+  "payment_id": "uh234hk2h3u423h42k34",
+  "order_status": "processing"
+}
+``` 
+
+>Response JSON Body:
+``` 
+{
+  message: "Order updated"
+}
+``` 
   - [DELETE] http://localhost:3000/orders/:id
+---
+>Request JSON Body:
+`None`
 
-### ORDER_ITEMS endpoints - Docs comming soon
+>Response JSON Body:
+``` 
+{
+  message: "Order deleted"
+}
+``` 
+
+### ORDER_ITEMS endpoints
   - [PATCH]  http://localhost:3000/order-items/:id
-  - [DELETE] http://localhost:3000/order-items/:id
+---
+>Request JSON Body:
+``` 
+{
+  "quantity": 5,
+}
+``` 
 
+>Response JSON Body:
+``` 
+{
+  message: "Order item updated"
+}
+``` 
+  - [DELETE] http://localhost:3000/order-items/:id
+---
+>Request JSON Body:
+`None`
+
+>Response JSON Body:
+``` 
+{
+  message: "Order item deleted"
+}
+``` 
