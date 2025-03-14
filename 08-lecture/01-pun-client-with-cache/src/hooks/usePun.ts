@@ -2,24 +2,24 @@
 import { useEffect, useState } from 'react'
 import { createPun, deletePun, fetchPun, fetchPuns, updatePun } from '../services/punService';
 import { IPun, PunCreate, PunUpdate } from '../types/Pun';
+import { saveToLocalStorage, getFromLocalStorage,} from '../utils/localStorageUtils';
 
 export const usePun = () => {
   const [puns, setPuns] = useState<IPun[]>(() => {
-    const cachedPuns = localStorage.getItem('puns') 
-    return cachedPuns ? JSON.parse(cachedPuns) : []
+    const cachedPuns = getFromLocalStorage('puns') 
+    return cachedPuns ? cachedPuns : []
   });
 
   const [error, setError] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false); 
   
-  useEffect(() => {
-    console.log('UseEffect')
-    
-    if (puns.length > 0) return
+  useEffect(() => {    
+    const cachedPuns = getFromLocalStorage('puns');
+    if (cachedPuns) {
+      setPuns(cachedPuns);
+      return;
+    }
     fetchPunsHandler();
-    setTimeout(() => { 
-      console.log('Clearing localStorage')
-      localStorage.removeItem('puns') }, 1000 * 10) // 10 minutes
   }, []);
 
   const fetchPunsHandler = async () => {
@@ -28,7 +28,7 @@ export const usePun = () => {
 
     try {
       const data = await fetchPuns();
-      localStorage.setItem('puns', JSON.stringify(data));
+      saveToLocalStorage('puns',data);
       setPuns(data);
     } catch (error) {
       setError("Error fetching puns");
@@ -67,7 +67,7 @@ export const usePun = () => {
     try {
       const newPun = await createPun(payload);
       const updatedPuns = [...puns, newPun];
-      localStorage.setItem('puns', JSON.stringify(updatedPuns));
+      saveToLocalStorage('puns',updatedPuns);
       setPuns(updatedPuns);
     } catch (error) {
       setError("Error creating pun");
@@ -87,7 +87,7 @@ export const usePun = () => {
         ? {...pun, ...payload}  // {_id: 1232, content: 'old content', date: '', content: 'new content'}
         : pun
       ));
-      localStorage.setItem('puns', JSON.stringify(updatedPuns));
+      saveToLocalStorage('puns',updatedPuns);
       setPuns(updatedPuns);
       await updatePun(id, payload);
     } catch (error) {
@@ -105,7 +105,7 @@ export const usePun = () => {
 
     try {
       const updatedPuns = puns.filter(pun => pun._id !== id);
-      localStorage.setItem('puns', JSON.stringify(updatedPuns));
+      saveToLocalStorage('puns',updatedPuns);
       setPuns(updatedPuns);
       await deletePun(id); // Moves down await for Optimistic UI.
     } catch (error) {
@@ -119,7 +119,7 @@ export const usePun = () => {
   }
 
   const rollBackPunChanges = (oldPuns: IPun[]) => {
-    localStorage.setItem('puns', JSON.stringify(oldPuns));
+    saveToLocalStorage('puns',oldPuns);
     setPuns(oldPuns);
   }
 
