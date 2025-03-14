@@ -1,11 +1,12 @@
-import { useReducer, useState } from 'react'
-import './App.css'
-import { Product } from './models/Product'
-import { CartACtionType, CartReducer } from './reducers/CartReducer'
-import { CartItem } from './models/CartItem';
+import { useState } from 'react'
+import { Product } from '../models/Product';
+import { CartACtionType } from '../reducers/CartReducer';
+import { CartItem } from '../models/CartItem';
+import { useCart } from '../hooks/useCart';
 
-function App() {
-  const [cart, dispatch] = useReducer(CartReducer, []);
+export const Products = () => {
+  const {cart, dispatch} = useCart();
+  // const [cart, dispatch] = useReducer(CartReducer, []);
   const [products] = useState([
     new Product(1, 'Jacket', 100),
     new Product(2, 'Shoes', 50),
@@ -81,7 +82,7 @@ function App() {
                 </li>
               ))
             }
-   
+    
           </ul>
           <h3>Total: {totalCartPrice} kr</h3>
           <button onClick={handleResetCart}>Reset Cart</button>
@@ -91,5 +92,3 @@ function App() {
     </>
   )
 }
-
-export default App
