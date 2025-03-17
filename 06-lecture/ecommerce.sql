@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Värd: localhost
--- Tid vid skapande: 17 mars 2025 kl 14:46
+-- Tid vid skapande: 17 mars 2025 kl 14:52
 -- Serverversion: 10.4.28-MariaDB
 -- PHP-version: 8.2.4
 
@@ -98,7 +98,8 @@ CREATE TABLE `products` (
 -- Index för tabell `customers`
 --
 ALTER TABLE `customers`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`);
 
 --
 -- Index för tabell `orders`

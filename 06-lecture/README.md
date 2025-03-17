@@ -190,8 +190,8 @@ In the recorded lesson we go through:
 {
   "firstname": "John",
   "lastname": "Doe",
-  "email": "john.doe@gmail.com",
-  "password": "234",            // OPTIONAL NOW
+  "email": "john.doe@gmail.com", // MUST BE UNIQUE
+  "password": "234",             // OPTIONAL NOW
   "phone": "53451234",
   "street_address": "Street 123",
   "postal_code": "Postal code",
@@ -215,8 +215,8 @@ In the recorded lesson we go through:
 {
   "firstname": "John",
   "lastname": "Doe",
-  "email": "john.doe@gmail.com",
-  "password": "234",          // OPTIONAL NOW
+  "email": "john.doe@gmail.com", // MUST BE UNIQUE
+  "password": "234",             // OPTIONAL NOW
   "phone": "53451234",
   "street_address": "Street 123",
   "postal_code": "Postal code",
