@@ -160,6 +160,29 @@ In the recorded lesson we go through:
   "created_at": "2025-03-07T07:25:02.000Z"
 }
 ``` 
+
+
+  - [GET]    http://localhost:3000/customers/email/:email
+---
+>Request JSON Body: 
+`None`
+
+>Response JSON Body:
+``` 
+{
+  "id": 1,
+  "firstname": "John",
+  "lastname": "Doe",
+  "email": "john.doe@gmail.com",
+  "password": "234",
+  "phone": "53451234",
+  "street_address": "Street 123",
+  "postal_code": "Postal code",
+  "city": "City",
+  "country": "Country",
+  "created_at": "2025-03-07T07:25:02.000Z"
+}
+``` 
   - [POST]   http://localhost:3000/customers
 ---
 >Request JSON Body:
@@ -168,7 +191,7 @@ In the recorded lesson we go through:
   "firstname": "John",
   "lastname": "Doe",
   "email": "john.doe@gmail.com",
-  "password": "234",
+  "password": "234",            // OPTIONAL NOW
   "phone": "53451234",
   "street_address": "Street 123",
   "postal_code": "Postal code",
@@ -193,7 +216,7 @@ In the recorded lesson we go through:
   "firstname": "John",
   "lastname": "Doe",
   "email": "john.doe@gmail.com",
-  "password": "234",
+  "password": "234",          // OPTIONAL NOW
   "phone": "53451234",
   "street_address": "Street 123",
   "postal_code": "Postal code",

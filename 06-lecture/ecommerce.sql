@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Värd: localhost
--- Tid vid skapande: 07 mars 2025 kl 07:29
+-- Tid vid skapande: 17 mars 2025 kl 14:46
 -- Serverversion: 10.4.28-MariaDB
 -- PHP-version: 8.2.4
 
@@ -32,7 +32,7 @@ CREATE TABLE `customers` (
   `firstname` varchar(100) NOT NULL,
   `lastname` varchar(100) NOT NULL,
   `email` varchar(200) NOT NULL,
-  `password` varchar(60) NOT NULL,
+  `password` varchar(60) DEFAULT NULL,
   `phone` varchar(30) NOT NULL,
   `street_address` varchar(100) NOT NULL,
   `postal_code` varchar(30) NOT NULL,
@@ -86,7 +86,7 @@ CREATE TABLE `products` (
   `price` int(5) NOT NULL,
   `stock` int(4) NOT NULL,
   `category` varchar(100) NOT NULL,
-  `image` varchar(200) NOT NULL,
+  `image` varchar(200) NOT NULL DEFAULT '',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
