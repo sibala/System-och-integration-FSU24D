@@ -60,7 +60,7 @@ export const getOrderById = async (req: Request, res: Response) => {
     // return;
 
     rows && rows.length > 0
-      ? res.json(formatOrderDetails(id, rows))
+      ? res.json(formatOrderDetails(rows))
       : res.status(404).json({message: 'Order not found'})
   } catch (error) {
     res.status(500).json({error: logError(error)})
