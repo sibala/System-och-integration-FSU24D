@@ -319,6 +319,50 @@ In the recorded lesson we go through:
   ]
 }
 ``` 
+
+ - [GET]    http://localhost:3000/orders/payment/:id
+---
+
+>Request JSON Body:
+`None`
+
+>Response JSON Body:
+``` 
+{
+  "id": "25",
+  "customer_id": 1,
+  "total_price": 669,
+  "payment_status": "unpaid",
+  "payment_id": null,
+  "order_status": "pending",
+  "created_at": "2025-03-12T18:25:32.000Z",
+  "customer_firstname": "John",
+  "customer_lastname": "Doe",
+  "customer_email": "john.doe@gmail.com",
+  "customer_password": "234",
+  "customer_phone": "5345",
+  "customer_street_address": "Street 123",
+  "customer_postal_code": "Postal code",
+  "customer_city": "City",
+  "customer_country": "Country",
+  "order_items": [
+    {
+      "id": 51,
+      "product_id": 11,
+      "product_name": "Test product - changed",
+      "quantity": 3,
+      "unit_price": 100
+    },
+    {
+      "id": 52,
+      "product_id": 10,
+      "product_name": "qwe",
+      "quantity": 3,
+      "unit_price": 123
+    }
+  ]
+}
+``` 
   - [POST]   http://localhost:3000/orders
 ---
 >Request JSON Body:
