@@ -12,6 +12,8 @@ app.use(express.json());
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 app.post('/stripe/create-checkout-session-hosted', async (req: Request, res: Response) => {
+
+  // Snappa upp line_items och order_id från req: Request
   const session = await stripe.checkout.sessions.create({
     line_items: [
       {
@@ -28,11 +30,11 @@ app.post('/stripe/create-checkout-session-hosted', async (req: Request, res: Res
     mode: 'payment',
     success_url: 'http://localhost:5173/order-confirmation?session_id={CHECKOUT_SESSION_ID}',
     cancel_url: 'http://localhost:5173/checkout',
-    client_reference_id: '123'
+    client_reference_id: '123' // order_id skall in här
   });
 
 
-  res.json({checkout_url: session.url});
+  res.json({checkout_url: session.url, session_id: session.id});
 
   // res.redirect(303, session.url);
 });
