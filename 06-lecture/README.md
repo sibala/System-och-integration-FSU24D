@@ -13,6 +13,7 @@ In the recorded lesson we go through:
 - [CUSTOMERS endpoints](https://github.com/sibala/System-och-integration-FSU24D/tree/main/06-lecture#customers-endpoints)
 - [ORDERS endpoints](https://github.com/sibala/System-och-integration-FSU24D/tree/main/06-lecture#orders-endpoints)
 - [ORDER ITEMS endpoints](https://github.com/sibala/System-och-integration-FSU24D/tree/main/06-lecture#order_items-endpoints)
+- [AUTH endpoints](https://github.com/sibala/System-och-integration-FSU24D/tree/main/06-lecture#auth-endpoints)
 
 ### PRODUCTS endpoints
 
@@ -451,5 +452,77 @@ In the recorded lesson we go through:
 ``` 
 {
   message: "Order item deleted"
+}
+``` 
+
+
+### AUTH endpoints
+  - [POST]  http://localhost:3000/auth/register
+---
+>Request JSON Body:
+``` 
+{
+  "username": "Admin",
+  "password": "123"
+}
+``` 
+
+>Response JSON Body:
+``` 
+{
+	"success": true,
+	"message": "User registered",
+	"user": {
+		"username": "Admin"
+	}
+}
+``` 
+  - [POST]  http://localhost:3000/auth/login
+---
+>Request JSON Body:
+``` 
+{
+  "username": "Admin",
+  "password": "123"
+}
+``` 
+
+>Response JSON Body:
+``` 
+{
+	"user": {
+		"username": "Admin"
+	},
+	"expires_in": 900, // expires in 15 min
+	"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkFkbWluIiwiY3JlYXRlZF9hdCI6IjIwMjUtMDMtMjZUMDA6MTk6MjQuMDAwWiIsImlhdCI6MTc0Mjk3OTY3MywiZXhwIjoxNzQyOTgwNTczfQ.x9CEMSZmyToJEWNbwM_NkPe3lNX49aM4qs6aCWrS-Jg"
+}
+``` 
+
+  - [POST]  http://localhost:3000/auth/refresh-token
+---
+>Request JSON Body:
+`None`
+
+>Response JSON Body:
+``` 
+{
+	"user": {
+		"username": "Admin"
+	},
+	"expires_in": 900, // expires in 15 min
+	"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkFkbWluIiwiY3JlYXRlZF9hdCI6IjIwMjUtMDMtMjZUMDA6MTk6MjQuMDAwWiIsImlhdCI6MTc0Mjk3OTY3MywiZXhwIjoxNzQyOTgwNTczfQ.x9CEMSZmyToJEWNbwM_NkPe3lNX49aM4qs6aCWrS-Jg"
+}
+``` 
+
+  - [POST]  http://localhost:3000/auth/clear-token
+---
+>Request JSON Body:
+`None`
+
+>Response JSON Body:
+``` 
+{
+	"success": true,
+	"message": "Token cleared"
 }
 ``` 
