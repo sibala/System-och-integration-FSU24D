@@ -1,4 +1,4 @@
-# Authentication and Pseudocode for the assignment
+# Authentication and Pseudo Code for the assignment
 
 ## Try implementing authentication in your ecommerce project, if time allows. (Not Obligatory)
 The ecommerce-api is updated with 4 new endpoinst for managing authentication
@@ -14,4 +14,4 @@ The ecommerce-api is updated with 4 new endpoinst for managing authentication
 ***
 
 ## Pseudo code for the assignment
-In 04-pseudo-code-for-assignment-1 we break down the steps to take for making a successfull integration with Stripe, in the ecommerce project
+In <b>04-pseudo-code-for-assignment-1</b> we break down the steps to take for making a successfull integration with Stripe, in the ecommerce project
