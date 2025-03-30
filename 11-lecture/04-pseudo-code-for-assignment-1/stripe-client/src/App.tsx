@@ -38,10 +38,10 @@ function App() {
     // const orderID = handleOrder(customerID)
     
 
-    // const payload = {
-    //   line_items: generera med hjälp av Cart
-    //   order_id: orderID
-    // }
+    const payload = {
+      // line_items: generera med hjälp av Cart
+      // order_id: orderID
+    }
     try {
       const response = await fetch('http://localhost:3000/stripe/create-checkout-session-hosted', {
         method: 'POST',
